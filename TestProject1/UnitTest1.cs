@@ -2,38 +2,57 @@
 
 namespace TestProject1
 {
+    [TestFixture]
     public class Tests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
 
-        [Test]
-        public void GivenSeveralProposedDigitsTestOutput()
-        {
-            // arrange: redirect in/out
-            //var input = new StringReader("2\n101\n102\n");
-            var input = new StringReader("3\n5\n20\n103\n");
-            //var input = new StringReader("2\n7\n7\n");
-            Console.SetIn(input);
+        // change this one value for all your students
+        //private const string TestInput = "2 7 7"; //guy
+        private const string TestInput = "5 23 7 100 46 42";
 
+        // helper to run MainQ2 with given space-separated input
+        private string[] RunAndCaptureLines(string spaceSeparatedInput)
+        {
+            // replace spaces with CRLF and append a final CRLF
+            var formattedInput = spaceSeparatedInput.Replace(" ", "\r\n") + "\r\n";
+
+            Console.SetIn(new StringReader(formattedInput));
             var output = new StringWriter();
             Console.SetOut(output);
 
-            // act
             Program.MainQ2();
 
-            // grab *all* of what was written
-            var allOutput = output.ToString();
-            // split into individual lines (dropping any trailing empty lines)
-            var lines = allOutput
+            return output
+                .ToString()
                 .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+        }
 
-            // assert: exactly one line equals "2"
+        [Test]
+        public void ExcactlyOneLineContains2()
+        {
+            var lines = RunAndCaptureLines(TestInput);
+
             var countOf2 = lines.Count(l => l == "2");
             Assert.That(countOf2, Is.EqualTo(1),
-                $"Expected exactly one '2' in output, but found {countOf2}. Full output was:{Environment.NewLine}{allOutput}");
+                $"Expected exactly one '2' in output, but found {countOf2}. Full output was:{Environment.NewLine}{string.Join("|", lines)}");
+        }
+
+        [Test]
+        public void OnlyOneLineOfOutput()
+        {
+            var lines = RunAndCaptureLines(TestInput);
+
+            Assert.That(lines.Length, Is.EqualTo(1),
+                $"Expected exactly 1 line of output, but got {lines.Length}. Output lines: {string.Join("|", lines)}");
+        }
+
+        [Test]
+        public void OutputContainsAtLeastOne2()
+        {
+            var lines = RunAndCaptureLines(TestInput);
+
+            Assert.That(lines, Does.Contain("2"),
+                "Expected output to contain '2' on at least one line.");
         }
     }
 }
