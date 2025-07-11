@@ -1,6 +1,6 @@
 ﻿namespace ConsTestSolution7._10._25
 {
-    internal class Program
+    public class Program
     {
 
         /// <summary>
