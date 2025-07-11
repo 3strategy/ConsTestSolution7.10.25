@@ -31,6 +31,21 @@
 
         //Q2 = מעקב
 
+        public static void MainQ2()
+        {
+            int m = 0;
+            int x, a;
+            x = int.Parse(Console.ReadLine());
+            for (int i = 1; i <= x; i++)
+            {
+                a = int.Parse(Console.ReadLine());
+                if (a < 10 || a > 99)
+                    m++;
+                else
+                    Console.WriteLine(a / 10);
+            }
+            Console.WriteLine(m);
+        }
 
         // Q3 קטע א סעיף א
         // ההוראה השגויה grade < 0
@@ -93,6 +108,8 @@
             else
                 Console.WriteLine($"{num1} is not a perfect number.");
         }
+
+
 
         static void Main(string[] args)
         {
