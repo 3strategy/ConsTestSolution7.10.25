@@ -84,7 +84,23 @@
                 // (אבל אין כמו ללמוד מדוגמא שפתרתם כבר - teranary לא למדנו)
                 // רגילה if-else כמובן שניקוד מלא על כתיבה של
                 Console.WriteLine($"total is : {price * qty - discount}");
-                Console.WriteLine($"total V2 : {(name == "0" ? 10 : 12) * qty - (qty >= 10 ? 20 : 0)}");
+            }
+            Console.WriteLine(count); // בבחינה אין דרישה לחפירות בפלט. שווה להיות לקוני
+        }
+
+        public static void MainQ4Short()
+        {
+            int count = 0, price;
+            while (true)
+            {
+                Console.Write("Enter quantity: ");
+                int qty = int.Parse(Console.ReadLine());
+                if (qty == 0) // תנאי יציאה
+                    break;
+                count++; // ספירה ברגע שהקלט חוקי
+                Console.Write("Enter type: cheese 0 / avocado 1: ");
+                string name = Console.ReadLine(); // אפשר גם לקלוט לשלם
+                Console.WriteLine($"total : {(name == "0" ? 10 : 12) * qty - (qty >= 10 ? 20 : 0)}");
             }
             Console.WriteLine(count); // בבחינה אין דרישה לחפירות בפלט. שווה להיות לקוני
         }

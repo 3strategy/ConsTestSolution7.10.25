@@ -8,7 +8,7 @@ namespace TestProject1
 
         // change this one value for all your students
         //private const string TestInput = "2 7 7"; //guy
-        private const string TestInput = "5 23 7 100 46 42";
+        private const string TestInput = "5 23 11 100 46 231";
 
         // helper to run MainQ2 with given space-separated input
         private string[] RunAndCaptureLines(string spaceSeparatedInput)
